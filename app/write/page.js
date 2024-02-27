@@ -23,9 +23,9 @@ import "react-quill/dist/quill.snow.css";
 //     </div>
 //   );
 // }
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 function Write() {
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [select, setSelect] = useState("");
