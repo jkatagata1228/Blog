@@ -7,6 +7,9 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogoutBtn from "./LogoutBtn";
 import { cookies } from "next/headers";
 import Theme from "./Theme";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,29 +19,15 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  let a = await getServerSession(authOptions);
+  let session = await getServerSession(authOptions);
 
-  let res = cookies().get("mode");
-
+  let modeColor = cookies().get("mode");
   return (
     <html lang="en">
-      <body className={res != undefined && res.value == "dark" ? "dark-mode" : ""}>
-        <div className="navbar">
-          <Link href="/" className="logo">
-            ㅁㄴㅇㄹㅁㄹㅇ
-          </Link>
-          <Link href="/list">List</Link>
-          {a ? (
-            <span>
-              {a.user.name}
-              <LogoutBtn></LogoutBtn>
-            </span>
-          ) : (
-            <LoginBtn></LoginBtn>
-          )}
-          <Theme></Theme>
-        </div>
+      <body className={modeColor != undefined && modeColor.value == "light" ? "light-mode" : "dark-mode"}>
+        <NavBar session={session} modeColor={modeColor}></NavBar>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );

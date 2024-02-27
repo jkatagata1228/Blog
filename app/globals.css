@@ -1,47 +1,39 @@
+/* Main Page */
 body {
-  margin: 0;
+  -ms-overflow-style: none; /* IE and Edge */
 }
-.list-bg {
-  background: rgb(249, 250, 255);
-  padding: 10px;
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
-.list-item {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 5px;
-  box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
+
+.main_contents {
+  height: 100vh;
+}
+.main_intro {
+}
+/* List Page */
+/* .list-item {
+} */
+.listItem-link {
+  text-decoration: none;
+  color: #000000;
 }
 .list-item h4 {
   font-size: 20px;
   font-weight: 800;
   margin: 0;
 }
-.list-item p {
-  color: grey;
-  margin: 5px 0px;
+
+.quill {
+  height: 65vh;
 }
-.p-20 {
-  padding: 20px;
-}
-input {
-  box-sizing: border-box;
-  padding: 10px;
-  display: block;
-  margin-bottom: 10px;
-}
-button {
-  padding: 10px 15px;
-  background: lightgray;
-  border: none;
-  border-radius: 5px;
-}
+
 a {
   text-decoration: none;
   color: black;
 }
 .navbar {
-  background: white;
+  background: #fafafa;
   padding: 20px;
 }
 .navbar a {
@@ -50,15 +42,60 @@ a {
   color: black;
 }
 .logo {
+  font-size: 40px;
   font-weight: bold;
 }
+.list-list {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fafafa;
+}
+/* .list-bg {
+  background-color: ;
+} */
 .list-item {
+  /* background-color: ; */
   opacity: 1;
   transition: all 1s;
 }
+.dark-mode {
+  background-color: #101010;
+  color: #fafafa;
+}
 .dark-mode .navbar {
-  background-color: #222;
+  background-color: #101010;
 }
 .dark-mode .navbar a {
-  color: white;
+  color: #fafafa;
+}
+.dark-mode .navbar p {
+  color: #fafafa;
+}
+.light-mode {
+  background-color: #fafafa;
+}
+.light-mode .navbar {
+  background-color: #fafafa;
+}
+.light-mode .navbar {
+  color: #fafafa;
+}
+.light-mode p {
+  /* color: black; */
+}
+.comment-form {
+  resize: none;
+}
+.p-email {
+  color: #101010;
+}
+.footer {
+  color: #4d4d4d4d;
+  padding: 20px;
+  text-align: center;
+}
+.div-comment {
+  margin-top: 150px;
 }

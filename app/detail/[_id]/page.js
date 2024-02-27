@@ -2,6 +2,9 @@ import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 import Comment from "./Comment";
 import { notFound } from "next/navigation";
+import { Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import ReactHtmlParser from "html-react-parser";
+import Listgroup from "@/app/list/Listgroup";
 
 export default async function Detail(props) {
   const db = (await connectDB).db("forum");
@@ -13,11 +16,17 @@ export default async function Detail(props) {
   }
 
   return (
-    <div>
-      <h4>상세페이지임</h4>
-      <h4>{result.title}</h4>
-      <p>{result.content}</p>
-      <Comment _id={props.params._id}></Comment>
-    </div>
+    <Container>
+      <Row>
+        <Col md={2}>
+          <Listgroup></Listgroup>
+        </Col>
+        <Col md={10}>
+          <Card body>{result.title}</Card>
+          <Card body>{ReactHtmlParser(result.content)}</Card>
+          <Comment _id={props.params._id}></Comment>
+        </Col>
+      </Row>
+    </Container>
   );
 }

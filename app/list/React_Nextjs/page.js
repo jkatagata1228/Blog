@@ -1,15 +1,15 @@
 import { connectDB } from "@/util/database";
-import ListItem from "./ListItem";
+import ListItem from "../ListItem";
 import { Col, Container, Row, Stack } from "react-bootstrap";
-import Listgroup from "./Listgroup";
+import Listgroup from "../Listgroup";
 
 //빌드할때 스태틱 렌더링 된것을 강제로 다이나믹 렌더링으로 바꿔주는코드
 //dynamic 이라는 예약된 변수
 // export const dynamic = "force-dynamic"
 
-export default async function List() {
+export default async function ReactNextjsList() {
   const db = (await connectDB).db("forum");
-  let result = await db.collection("post").find().toArray();
+  let result = await db.collection("post").find({ value: "1" }).toArray();
   return (
     <Container>
       <Row>
