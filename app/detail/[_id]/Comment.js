@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 export default function Comment(props) {
   let [comment, setComment] = useState("");
@@ -29,21 +30,28 @@ export default function Comment(props) {
       });
   }, []);
   return (
-    <div>
-      <div>댓글목록보여줄부분</div>
+    <div className="div-comment">
+      <div>
+        <p>Comments</p>
+      </div>
 
       {data.length > 0
         ? data.map(function (a, i) {
             return <p key={i}>{a.content}</p>;
           })
-        : "댓글없음"}
-
-      <input
-        onChange={function (e) {
-          setComment(e.target.value);
-        }}
-      ></input>
-      <button
+        : "No Comment"}
+      <FloatingLabel controlId="floatingTextarea" label="Comments" className="mb-3">
+        <Form.Control
+          className="comment-form"
+          as="textarea"
+          placeholder="Leave a comment here"
+          onChange={function (e) {
+            setComment(e.target.value);
+          }}
+        ></Form.Control>
+      </FloatingLabel>
+      <Button
+        variant="primary"
         onClick={function () {
           fetch("/api/comment/new", {
             method: "POST",
@@ -54,8 +62,8 @@ export default function Comment(props) {
           });
         }}
       >
-        댓글전송
-      </button>
+        Comment
+      </Button>
     </div>
   );
 }
