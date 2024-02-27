@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -25,6 +25,7 @@ import "react-quill/dist/quill.snow.css";
 // }
 
 function Write() {
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [select, setSelect] = useState("");
