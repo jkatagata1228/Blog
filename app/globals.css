@@ -10,6 +10,7 @@ body {
   height: 100vh;
 }
 .main_intro {
+  text-align: end;
 }
 /* List Page */
 /* .list-item {
@@ -98,4 +99,10 @@ a {
 }
 .div-comment {
   margin-top: 150px;
+}
+.loading_container {
+  display: flex;
+}
+.loading_content {
+  margin: auto;
 }

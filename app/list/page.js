@@ -10,6 +10,10 @@ import Listgroup from "./Listgroup";
 export default async function List() {
   const db = (await connectDB).db("forum");
   let result = await db.collection("post").find().toArray();
+  result = result.map((a, i) => {
+    a._id = a._id.toString();
+    return a;
+  });
   return (
     <Container>
       <Row>

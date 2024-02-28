@@ -12,7 +12,8 @@ export default async function handler(req, res) {
       try {
         const db = (await connectDB).db("forum");
         await db.collection("post").insertOne(req.body);
-        return res.status(200).redirect("/list");
+        return res.status(200).json("ok");
+        // return res.redirect(302, "/list");
       } catch (error) {
         return res.status(500).json("sorry");
       }
