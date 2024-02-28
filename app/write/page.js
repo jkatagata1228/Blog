@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import Router from "next/router";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
 // function a() {
@@ -22,17 +23,17 @@ import "react-quill/dist/quill.snow.css";
 //     </div>
 //   );
 // }
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 function Write() {
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+  const [select, setSelect] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [select, setSelect] = useState("");
 
-  const getValue = function (e) {
+  const getTitleValue = function (e) {
     setTitle(e.target.value);
   };
-  const selectValue = function (e) {
+  const getSelectValue = function (e) {
     setSelect(e.target.value);
   };
   const modules = {
@@ -64,14 +65,14 @@ function Write() {
     <Container>
       <Row>
         <Col>
-          <Form.Select aria-label="Default select example" onChange={selectValue}>
+          <Form.Select aria-label="Default select example" onChange={getSelectValue}>
             <option>Please select</option>
             <option value="1">React/Nextjs</option>
             <option value="2">CSS</option>
             <option value="3">Git</option>
           </Form.Select>
           <InputGroup className="mb-3">
-            <Form.Control name="title" placeholder="Title" onChange={getValue} />
+            <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
           </InputGroup>
         </Col>
       </Row>
@@ -87,7 +88,15 @@ function Write() {
           </Button>
           <Button
             onClick={function () {
-              fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select }) });
+              fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select }) })
+                .then((result) => {
+                  Router.push("/list");
+                  //성공시 실행할코드
+                })
+                .catch((error) => {
+                  //인터넷문제 등으로 실패시 실행할코드
+                  console.log(error);
+                });
             }}
             variant="outline-primary"
           >

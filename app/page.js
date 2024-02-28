@@ -1,4 +1,5 @@
 import { connectDB } from "@/util/database";
+import Image from "next/image";
 import { Col, Container, Row } from "react-bootstrap";
 
 export default async function Home() {
@@ -14,7 +15,9 @@ export default async function Home() {
             <p>I am Jang Jun Yong, a front-end engineer.</p>
           </div>
         </Col>
-        <Col md={6}></Col>
+        <Col md={6}>
+          <Image src="/IMG_6882.JPG" alt="main-image" width="300" height="300"></Image>
+        </Col>
       </Row>
     </Container>
   );

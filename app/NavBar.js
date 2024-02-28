@@ -8,7 +8,7 @@ const { Navbar, Container, Nav, NavDropdown, Button } = require("react-bootstrap
 
 function NavBar(props) {
   return (
-    <Navbar expand="lg" className="navbar">
+    <Navbar expand="sm" className="navbar">
       <Container fluid>
         <Navbar.Brand href="/">
           <p className="logo">JUN</p>
