@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import ReactHtmlParser from "html-react-parser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReact, faSass, faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 // function a({ result }) {
 //   return (
@@ -71,13 +73,18 @@ import ReactHtmlParser from "html-react-parser";
 
 function ListItem(props) {
   return (
-    <div className="list-item">
+    <div>
       {props.result.map(function (a, i) {
         return (
-          <ListGroup className="list-item" key={i}>
-            <ListGroup.Item action href={`/detail/${props.result[i]._id}`}>
-              {props.result[i].title}
-              {/* <Card.Text>{ReactHtmlParser(`${props.result[i].content}`)}</Card.Text> */}
+          <ListGroup key={i}>
+            <ListGroup.Item action href={`/detail/${props.result[i]._id}`} style={{ marginBottom: "16px" }}>
+              <p>{props.result[i].title}</p>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                {props.result[i].value === "faReact" && <FontAwesomeIcon icon={faReact} size="xl" />}
+                {props.result[i].value === "faSass" && <FontAwesomeIcon icon={faSass} size="xl" />}
+                {props.result[i].value === "faGitAlt" && <FontAwesomeIcon icon={faGitAlt} size="xl" />}
+                <p>{props.result[i].date}</p>
+              </div>
             </ListGroup.Item>
           </ListGroup>
         );

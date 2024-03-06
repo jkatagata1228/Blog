@@ -13,8 +13,6 @@ body {
   text-align: end;
 }
 /* List Page */
-/* .list-item {
-} */
 .listItem-link {
   text-decoration: none;
   color: #000000;
@@ -38,7 +36,6 @@ a {
   padding: 20px;
 }
 .navbar a {
-  margin-right: 10px;
   text-decoration: none;
   color: black;
 }

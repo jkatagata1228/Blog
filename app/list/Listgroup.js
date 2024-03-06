@@ -8,8 +8,8 @@ function Listgroup() {
       <ListGroup.Item action href="/list/React_Nextjs">
         React/Nextjs
       </ListGroup.Item>
-      <ListGroup.Item action href="/list/CSS">
-        CSS
+      <ListGroup.Item action href="/list/CSS_SCSS">
+        CSS/SCSS
       </ListGroup.Item>
       <ListGroup.Item action href="/list/Git">
         Git

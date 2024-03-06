@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <div className="footer">
-      <p>Developed By Jang Jun Yong</p>
+      <p>Developed By Jang JunYong</p>
     </div>
   );
 }
