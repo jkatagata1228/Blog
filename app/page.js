@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <Container className="main_contents">
-      <Row className="aa">
+      <Row>
         <Col md={6}>
           <div className="main_intro">
             <h1>Hello</h1>

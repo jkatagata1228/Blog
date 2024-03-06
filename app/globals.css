@@ -7,9 +7,13 @@ body {
 }
 
 .main_contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 .main_intro {
+  /* vertical-align: baseline; */
   text-align: end;
 }
 /* List Page */

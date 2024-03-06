@@ -78,11 +78,11 @@ function ListItem(props) {
         return (
           <ListGroup key={i}>
             <ListGroup.Item action href={`/detail/${props.result[i]._id}`} style={{ marginBottom: "16px" }}>
-              <p>{props.result[i].title}</p>
+              <p style={{ fontWeight: "bold" }}>{props.result[i].title}</p>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                {props.result[i].value === "faReact" && <FontAwesomeIcon icon={faReact} size="xl" />}
-                {props.result[i].value === "faSass" && <FontAwesomeIcon icon={faSass} size="xl" />}
-                {props.result[i].value === "faGitAlt" && <FontAwesomeIcon icon={faGitAlt} size="xl" />}
+                {props.result[i].value === "faReact" && <FontAwesomeIcon icon={faReact} size="xl" style={{ color: "#61DAFB" }} />}
+                {props.result[i].value === "faSass" && <FontAwesomeIcon icon={faSass} size="xl" style={{ color: "#CF649A" }} />}
+                {props.result[i].value === "faGitAlt" && <FontAwesomeIcon icon={faGitAlt} size="xl" style={{ color: "#F14E32" }} />}
                 <p>{props.result[i].date}</p>
               </div>
             </ListGroup.Item>
