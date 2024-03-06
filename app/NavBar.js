@@ -11,7 +11,9 @@ function NavBar(props) {
     <Navbar expand="sm" className="navbar">
       <Container fluid>
         <Navbar.Brand href="/">
-          <p className="logo">JUN</p>
+          <p className="logo" style={{ marginBottom: "0px" }}>
+            JUN
+          </p>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -41,9 +43,9 @@ function NavBar(props) {
           </Nav>
           {props.session ? (
             <>
-              <Nav.Link href="#" disabled>
-                <p className="p-email">{props.session.user.name}</p>
-              </Nav.Link>
+              <p className="p-email" style={{ marginRight: "6px", marginBottom: "0px" }}>
+                {props.session.user.name}
+              </p>
               <LogoutBtn modeColor={props.modeColor}></LogoutBtn>
             </>
           ) : (

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
+import WriteReactQuill from "../ReactQuill";
 // function a() {
 //   // if(session){
 //   //   return(<div></div>)
@@ -78,7 +79,7 @@ function Write() {
       </Row>
       <Row>
         <Col>
-          <ReactQuill name="content" className="quill" modules={modules} theme="snow" value={content} onChange={setContent} />
+          <WriteReactQuill content={content} setContent={setContent} />
         </Col>
       </Row>
       <Row>
