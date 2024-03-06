@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Router from "next/router";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
@@ -60,16 +59,17 @@ function Write() {
       ],
     },
   };
-
+  const today = new Date();
+  const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
   return (
     <Container>
       <Row>
         <Col>
           <Form.Select aria-label="Default select example" onChange={getSelectValue}>
             <option>Please select</option>
-            <option value="1">React/Nextjs</option>
-            <option value="2">CSS</option>
-            <option value="3">Git</option>
+            <option value="faReact">React/Nextjs</option>
+            <option value="faSas">CSS/SCSS</option>
+            <option value="faGitAlt">Git</option>
           </Form.Select>
           <InputGroup className="mb-3">
             <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
@@ -88,15 +88,9 @@ function Write() {
           </Button>
           <Button
             onClick={function () {
-              fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select }) })
-                .then((result) => {
-                  Router.push("/list");
-                  //성공시 실행할코드
-                })
-                .catch((error) => {
-                  //인터넷문제 등으로 실패시 실행할코드
-                  console.log(error);
-                });
+              fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
+                .then((response) => response.json())
+                .then(window.location.replace("/list"));
             }}
             variant="outline-primary"
           >

@@ -2,7 +2,7 @@ import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 import Comment from "./Comment";
 import { notFound } from "next/navigation";
-import { Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import ReactHtmlParser from "html-react-parser";
 import Listgroup from "@/app/list/Listgroup";
 

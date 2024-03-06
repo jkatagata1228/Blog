@@ -8,15 +8,15 @@ export default async function Home() {
 
   return (
     <Container className="main_contents">
-      <Row>
+      <Row className="aa">
         <Col md={6}>
           <div className="main_intro">
             <h1>Hello</h1>
-            <p>I am Jang Jun Yong, a front-end engineer.</p>
+            <p>I am Jang JunYong, a front-end engineer.</p>
           </div>
         </Col>
         <Col md={6}>
-          <Image src="/IMG_6882.JPG" alt="main-image" width="300" height="300"></Image>
+          <Image src="/IMG_6882.JPG" alt="main-image" width="300" height="300" priority />
         </Col>
       </Row>
     </Container>

@@ -11,6 +11,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; /* eslint-disable import/first */
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

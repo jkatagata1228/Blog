@@ -9,7 +9,7 @@ import Listgroup from "../Listgroup";
 
 export default async function ReactNextjsList() {
   const db = (await connectDB).db("forum");
-  let result = await db.collection("post").find({ value: "3" }).toArray();
+  let result = await db.collection("post").find({ value: "faGitAlt" }).toArray();
   return (
     <Container>
       <Row>
