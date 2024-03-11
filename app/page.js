@@ -19,7 +19,6 @@ export default async function Home() {
           <Image src="/IMG_6882.JPG" alt="main-image" width="300" height="300" priority />
         </Col>
       </Row>
-      1
     </Container>
   );
 }
