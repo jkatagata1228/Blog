@@ -10,10 +10,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 86px - 80px);
 }
 .main_intro {
-  /* vertical-align: baseline; */
+  height: 100%;
   text-align: end;
 }
 /* List Page */
