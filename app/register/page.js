@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import style from "./page.module.scss";
 
 function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const getNameValue = function (e) {
+    setName(e.target.value);
+  };
   const getEmailValue = function (e) {
     setEmail(e.target.value);
   };
@@ -14,26 +19,39 @@ function Register() {
     setPassword(e.target.value);
   };
   return (
-    <Container fluid="md">
+    <Container fluid="md" className={style.register}>
       <Row>
         <Col>
           <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
-            <Form.Control placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" onChange={getEmailValue} />
+            <InputGroup.Text>Name</InputGroup.Text>
+            <Form.Control placeholder="Please enter your name" aria-label="Username" aria-describedby="basic-addon1" onChange={getNameValue} />
           </InputGroup>
           <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">Password</InputGroup.Text>
-            <Form.Control placeholder="UserPassword" type="password" id="inputPassword5" aria-describedby="passwordHelpBlock" onChange={getPasswordlValue} />
+            <InputGroup.Text>Email</InputGroup.Text>
+            <Form.Control placeholder="Please enter your e-mail" aria-label="Username" aria-describedby="basic-addon1" onChange={getEmailValue} />
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>Password</InputGroup.Text>
+            <Form.Control
+              placeholder="Please enter your password"
+              type="password"
+              id="inputPassword5"
+              aria-describedby="passwordHelpBlock"
+              onChange={getPasswordlValue}
+            />
           </InputGroup>
         </Col>
-        <button
-          onClick={function () {
-            fetch("api/auth/signup", { method: "POST", body: JSON.stringify({ email: email, password: password, role: "none_admin" }) });
-          }}
-        >
-          Register
-        </button>
-        <button>Cancel</button>
+        <div className={style.register__div__btn}>
+          <Button variant="outline-danger">Cancel</Button>
+          <Button
+            variant="outline-primary"
+            onClick={function () {
+              fetch("api/auth/signup", { method: "POST", body: JSON.stringify({ name: name, email: email, password: password, role: "none_admin" }) });
+            }}
+          >
+            Register
+          </Button>
+        </div>
       </Row>
     </Container>
   );

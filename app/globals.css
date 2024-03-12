@@ -5,17 +5,6 @@ body {
 ::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-
-.main_contents {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 86px - 80px);
-}
-.main_intro {
-  height: 100%;
-  text-align: end;
-}
 /* List Page */
 .listItem-link {
   text-decoration: none;
