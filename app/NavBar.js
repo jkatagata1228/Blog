@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import LoginBtn from "./LoginBtn";
 import LogoutBtn from "./LogoutBtn";
 import Theme from "./Theme";
@@ -49,7 +50,12 @@ function NavBar(props) {
               <LogoutBtn modeColor={props.modeColor}></LogoutBtn>
             </>
           ) : (
-            <LoginBtn modeColor={props.modeColor}></LoginBtn>
+            <>
+              <Link href="/register">
+                <button>Register</button>
+              </Link>
+              <LoginBtn modeColor={props.modeColor}></LoginBtn>
+            </>
           )}
           <Theme modeColor={props.modeColor}></Theme>
         </Navbar.Collapse>

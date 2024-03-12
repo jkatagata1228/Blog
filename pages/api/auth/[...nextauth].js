@@ -68,30 +68,3 @@ export const authOptions = {
   adapter: MongoDBAdapter(connectDB), //OAuth + session 쓸때 코드
 };
 export default NextAuth(authOptions);
-
-// .env 파일 사용하려면
-
-// .js파일을 공유하거나 어디 올리는 일이 잦을텐데
-
-// .js파일들이 털리면 여러분들 코딩인생도 끝이 나기 때문에
-
-// 소스코드 곳곳에 있는 암호나 중요한 문자열들은 다른 파일로 빼놓는 것도 좋습니다.
-
-// NEXTAUTH_SECRET='시크릿키1234'
-// .env파일을 프로젝트폴더에 하나 생성해서
-
-// 작명1=보관할중요한문자1
-
-// 작명2=보관할중요한문자2
-
-// ...
-
-// 이렇게 적어놓습니다.
-
-// ([...nextauth.js 파일 일부)
-
-// 어댑터: MongoDBA 어댑터(connectDB),
-// secret: process.env.NEXTAUTH_SECRET
-// 그리고 필요한 js 파일 가서 process.env.작명1 이라고 사용하면
-
-// .env 파일에 있던 작명1에 담아놨던 데이터가 그 자리에 남습니다.
