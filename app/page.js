@@ -17,7 +17,7 @@ export default async function Home() {
           </div>
         </Col>
         <Col md={6}>
-          <Image src="/IMG_6882.JPG" alt="main-image" width="300" height="300" priority />
+          <Image src="/images/IMG_6882.JPG" alt="main-image" width="300" height="300" priority />
         </Col>
       </Row>
     </Container>

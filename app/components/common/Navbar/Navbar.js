@@ -1,18 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import LoginBtn from "./LoginBtn";
-import LogoutBtn from "./LogoutBtn";
-import Theme from "./Theme";
-import { House, ListTask, PencilSquare } from "react-bootstrap-icons";
-const { Navbar, Container, Nav, NavDropdown, Button } = require("react-bootstrap");
+import LoginBtn from "../LoginBtn";
+import LogoutBtn from "../LogoutBtn";
+import Theme from "../ThemeBtn";
+import { ListTask, PencilSquare } from "react-bootstrap-icons";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import style from "./Navbar.module.scss";
 
 function NavBar(props) {
   return (
-    <Navbar expand="sm" className="navbar">
+    <Navbar expand="sm" className={style.navbar}>
       <Container fluid>
         <Navbar.Brand href="/">
-          <p className="logo" style={{ marginBottom: "0px" }}>
+          <p className={style.navbar__p__logo} style={{ marginBottom: "0px" }}>
             JUN
           </p>
         </Navbar.Brand>
