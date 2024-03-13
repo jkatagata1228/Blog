@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
-import WriteReactQuill from "../ReactQuill";
+import WriteReactQuill from "../components/ReactQuill";
 // function a() {
 //   // if(session){
 //   //   return(<div></div>)

@@ -1,15 +1,11 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import LogoutBtn from "./LogoutBtn";
 import { cookies } from "next/headers";
-import Theme from "./Theme";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import Navbar from "./components/common/Navbar/Navbar";
+import Footer from "./components/common/Footer/Footer";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -29,7 +25,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={modeColor != undefined && modeColor.value == "light" ? "light-mode" : "dark-mode"}>
-        <NavBar session={session} modeColor={modeColor}></NavBar>
+        <Navbar session={session} modeColor={modeColor} />
         {children}
         <Footer></Footer>
       </body>

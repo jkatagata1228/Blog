@@ -5,52 +5,11 @@ body {
 ::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-/* List Page */
-.listItem-link {
-  text-decoration: none;
-  color: #000000;
-}
-.list-item h4 {
-  font-size: 20px;
-  font-weight: 800;
-  margin: 0;
-}
 
 .quill {
   height: 65vh;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-.navbar {
-  background: #fafafa;
-  padding: 20px;
-}
-.navbar a {
-  text-decoration: none;
-  color: black;
-}
-.logo {
-  font-size: 40px;
-  font-weight: bold;
-}
-.list-list {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fafafa;
-}
-/* .list-bg {
-  background-color: ;
-} */
-.list-item {
-  /* background-color: ; */
-  opacity: 1;
-  transition: all 1s;
-}
 .dark-mode {
   background-color: #101010;
   color: #fafafa;
@@ -82,17 +41,6 @@ a {
 .p-email {
   color: #101010;
 }
-.footer {
-  color: #4d4d4d4d;
-  padding: 20px;
-  text-align: center;
-}
 .div-comment {
   margin-top: 150px;
-}
-.loading_container {
-  display: flex;
-}
-.loading_content {
-  margin: auto;
 }
