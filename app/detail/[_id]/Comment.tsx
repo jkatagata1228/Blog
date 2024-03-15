@@ -5,7 +5,7 @@ import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 export default function Comment(props) {
   let [comment, setComment] = useState("");
-  let [data, setData] = useState([]);
+  let [data, setData] = useState<unknown[]>([]);
 
   //useEffect()는 html렌더링과 상관없는 쓸데없는 코드보관함
   //ajax,타이머 등 넣음
