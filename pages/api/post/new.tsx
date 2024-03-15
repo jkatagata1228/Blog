@@ -1,7 +1,7 @@
-import { connectDB } from "@/util/database";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { NextResponse } from "next/server";
+import { connectDB } from "../../../util/database";
 
 export default async function handler(req, res) {
   let session = await getServerSession(req, res, authOptions);
