@@ -1,24 +1,23 @@
-/* Main Page */
 body {
   -ms-overflow-style: none; /* IE and Edge */
 }
 ::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-
-.quill {
-  height: 65vh;
+.children {
+  width: 100%;
+  height: calc(100vh - 206px);
+  overflow-y: scroll;
 }
-
+.quill {
+  height: 50vh;
+}
 .dark-mode {
   background-color: #101010;
   color: #fafafa;
 }
 .dark-mode .navbar {
   background-color: #101010;
-}
-.dark-mode .navbar a {
-  color: #fafafa;
 }
 .dark-mode .navbar p {
   color: #fafafa;
@@ -29,18 +28,18 @@ body {
 .light-mode .navbar {
   background-color: #fafafa;
 }
-.light-mode .navbar {
-  color: #fafafa;
-}
 .light-mode p {
-  /* color: black; */
+  color: #101010;
 }
 .comment-form {
   resize: none;
 }
-.p-email {
-  color: #101010;
-}
 .div-comment {
   margin-top: 150px;
+}
+.listgroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

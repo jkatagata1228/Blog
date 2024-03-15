@@ -1,13 +1,12 @@
-import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
+import ReactHtmlParser from "html-react-parser";
+import { connectDB } from "../../../util/database";
 
 export default async function Edit(props) {
   const db = (await connectDB).db("forum");
   let result = await db.collection("post").findOne({ _id: new ObjectId(props.params._id) });
-
   return (
     <div className="p-20">
-      <h4>글수정</h4>
       <form action="/api/post/edit" method="POST">
         <input name="title" defaultValue={result.title}></input>
         <input name="content" defaultValue={result.content}></input>

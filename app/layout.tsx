@@ -1,14 +1,13 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { cookies } from "next/headers";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/common/Navbar/Navbar";
-import Footer from "./components/common/Footer/Footer";
-
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import NavBar from "./components/common/Navbar/Navbar";
+import Footer from "./components/common/Footer/Footer";
 config.autoAddCss = false; /* eslint-disable import/first */
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,14 +19,14 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
-
   let modeColor = cookies().get("mode");
+
   return (
     <html lang="en">
       <body className={modeColor != undefined && modeColor.value == "light" ? "light-mode" : "dark-mode"}>
-        <Navbar session={session} modeColor={modeColor} />
-        {children}
-        <Footer></Footer>
+        <NavBar session={session} modeColor={modeColor} />
+        <div className="children">{children}</div>
+        <Footer />
       </body>
     </html>
   );

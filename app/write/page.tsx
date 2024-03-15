@@ -67,12 +67,12 @@ function Write() {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="quill">
           <WriteReactQuill content={content} setContent={setContent} />
         </Col>
       </Row>
       <Row>
-        <Col style={{ marginTop: "80px" }}>
+        <Col style={{ marginTop: "3.5em" }}>
           <Button href="/list" variant="outline-danger">
             Cancel
           </Button>
