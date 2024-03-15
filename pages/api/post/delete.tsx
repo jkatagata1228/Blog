@@ -1,7 +1,7 @@
-import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
+import { connectDB } from "../../../util/database";
 
 export default async function handler(req, res) {
   let a = await getServerSession(req, res, authOptions);
