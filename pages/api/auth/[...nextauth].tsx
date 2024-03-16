@@ -5,11 +5,20 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
+type EnvVariables = {
+  GITHUB_CLIENTID: string;
+  GITHUB_CLIENTSECRET: string;
+};
+
+const env = process.env as EnvVariables;
+
 export const authOptions: NextAuthOptions = {
+  
+  
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENTID, //'Github에서 발급받은ID',
-      clientSecret: process.env.GITHUB_CLIENTSECRET, //'Github에서 발급받은Secret',
+      clientId: env.GITHUB_CLIENTID,
+      clientSecret: env.GITHUB_CLIENTSECRET,
     }),
 
     CredentialsProvider({
