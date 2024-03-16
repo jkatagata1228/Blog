@@ -5,20 +5,12 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
-type EnvVariables = {
-  GITHUB_CLIENTID: string;
-  GITHUB_CLIENTSECRET: string;
-};
-
-const env = process.env as EnvVariables;
-
 export const authOptions: NextAuthOptions = {
-  
   
   providers: [
     GithubProvider({
-      clientId: env.GITHUB_CLIENTID,
-      clientSecret: env.GITHUB_CLIENTSECRET,
+      clientId: process.env.GITHUB_CLIENTID || '', 
+      clientSecret: process.env.GITHUB_CLIENTSECRET || '', 
     }),
 
     CredentialsProvider({
