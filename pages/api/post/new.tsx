@@ -6,9 +6,9 @@ import { connectDB } from "../../../util/database";
 export default async function handler(req, res) {
   let session = await getServerSession(req, res, authOptions);
   req.body = JSON.parse(req.body);
-  req.body.author = session.user.email;
 
-  if (session) {
+  if (session && session.user) {
+    req.body.author = session.user.email;
     if (req.method == "POST") {
       try {
         const db = (await connectDB).db("forum");
