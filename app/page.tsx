@@ -1,7 +1,7 @@
-import { connectDB } from "@/util/database";
 import Image from "next/image";
 import { Col, Container, Row } from "react-bootstrap";
 import style from "./page.module.scss";
+import { connectDB } from "../util/database";
 
 export default async function Home() {
   const db = (await connectDB).db("forum");

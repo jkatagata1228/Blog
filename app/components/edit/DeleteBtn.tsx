@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import DeleteModal from "./DeleteModal";
 
-function Delete(props) {
+function DeleteBtn(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
@@ -89,4 +89,4 @@ function Delete(props) {
   );
 }
 
-export default Delete;
+export default DeleteBtn;

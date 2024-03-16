@@ -1,15 +1,21 @@
-import { connectDB } from "@/util/database";
+import { connectDB } from "../../../util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
-export const authOptions = {
+type Credentials = {
+  email: string;
+  password : string
+};
+
+export const authOptions: NextAuthOptions = {
+  
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENTID, //'Github에서 발급받은ID',
-      clientSecret: process.env.GITHUB_CLIENTSECRET, //'Github에서 발급받은Secret',
+      clientId: process.env.GITHUB_CLIENTID || '', 
+      clientSecret: process.env.GITHUB_CLIENTSECRET || '', 
     }),
 
     CredentialsProvider({
@@ -23,7 +29,7 @@ export const authOptions = {
       //2. 로그인요청시 실행되는코드
       //직접 DB에서 아이디,비번 비교하고
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
-      async authorize(credentials) {
+      async authorize(credentials : Credentials) {
         let db = (await connectDB).db("forum");
         let user = await db.collection("user_cred").findOne({ email: credentials.email });
         if (!user) {
@@ -49,16 +55,16 @@ export const authOptions = {
   callbacks: {
     //4. jwt 만들 때 실행되는 코드
     //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user }: { token: any, user: any }) => {
       if (user) {
-        token.user = {};
+        token.user = {}
         token.user.name = user.name;
         token.user.email = user.email;
       }
       return token;
     },
     //5. 유저 세션이 조회될 때 마다 실행되는 코드
-    session: async ({ session, token }) => {
+    session: async ({ session, token }: { session: any, token: any }) => {
       session.user = token.user;
       return session;
     },

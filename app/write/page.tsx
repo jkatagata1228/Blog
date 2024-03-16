@@ -52,6 +52,7 @@ function Write() {
   const today = new Date();
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
   return (
+    <>
     <Container>
       <Row>
         <Col>
@@ -67,20 +68,22 @@ function Write() {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="quill">
           <WriteReactQuill content={content} setContent={setContent} />
         </Col>
       </Row>
       <Row>
-        <Col style={{ marginTop: "80px" }}>
+        <Col style={{ marginTop: "3.5em" }}>
           <Button href="/list" variant="outline-danger">
             Cancel
           </Button>
           <Button
-            onClick={function () {
+            onClick={function () : (null | undefined | void){
               fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
                 .then((response) => response.json())
-                .then(window.location.replace("/list"));
+                .then(() => {
+                  window.location.replace("/list");
+              });
             }}
             variant="outline-primary"
           >
@@ -89,6 +92,7 @@ function Write() {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 export default Write;

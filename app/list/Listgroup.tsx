@@ -4,7 +4,7 @@ import { ListGroup } from "react-bootstrap";
 
 function Listgroup() {
   return (
-    <ListGroup style={{ textAlign: "center" }}>
+    <ListGroup>
       <ListGroup.Item action href="/list/React_Nextjs">
         React/Nextjs
       </ListGroup.Item>

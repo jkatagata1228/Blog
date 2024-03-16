@@ -9,7 +9,8 @@ export default function Theme(props) {
   let router = useRouter();
 
   useEffect(function () {
-    let modeValue = ("; " + document.cookie).split(`; mode=`).pop().split(";")[0];
+    const cookieString: string = document.cookie || "";
+    const modeValue = ("; " + cookieString).split(`; mode=`).pop()?.split(";")[0];
     if (modeValue == "") {
       document.cookie = "mode=dark;, max-age=" + 3600 * 24 * 400;
     }

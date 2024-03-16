@@ -1,12 +1,12 @@
-import { connectDB } from "@/util/database";
+import { connectDB } from "../../../util/database";
 import { ObjectId } from "mongodb";
 import Comment from "./Comment";
 import { notFound } from "next/navigation";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import ReactHtmlParser from "html-react-parser";
-import Listgroup from "@/app/list/Listgroup";
+import Listgroup from "../../list/Listgroup";
 import Link from "next/link";
-import Delete from "@/app/components/edit/DeleteBtn";
+import DeleteBtn from "../../components/edit/DeleteBtn";
 
 export default async function Detail(props) {
   const db = (await connectDB).db("forum");
@@ -30,7 +30,7 @@ export default async function Detail(props) {
             <Link href={`/edit/${props.params._id}`}>
               <Button variant="success">Edit</Button>
             </Link>
-            <Delete props={props} />
+            <DeleteBtn props={props} />
           </div>
           <Comment _id={props.params._id}></Comment>
         </Col>
