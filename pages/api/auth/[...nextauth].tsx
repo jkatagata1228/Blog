@@ -55,16 +55,16 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     //4. jwt 만들 때 실행되는 코드
     //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user }: { token: any, user: any }) => {
       if (user) {
-        token.user = {};
+        token.user = {}
         token.user.name = user.name;
         token.user.email = user.email;
       }
       return token;
     },
     //5. 유저 세션이 조회될 때 마다 실행되는 코드
-    session: async ({ session, token }) => {
+    session: async ({ session, token }: { session: any, token: any }) => {
       session.user = token.user;
       return session;
     },
