@@ -77,7 +77,7 @@ function Write() {
             Cancel
           </Button>
           <Button
-            onClick={function () {
+            onClick={function () : void {
               fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
                 .then((response) => response.json())
                 .then(window.location.replace("/list"));
