@@ -52,6 +52,7 @@ function Write() {
   const today = new Date();
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
   return (
+    <>
     <Container>
       <Row>
         <Col>
@@ -77,7 +78,7 @@ function Write() {
             Cancel
           </Button>
           <Button
-            onClick={function () : void {
+            onClick={function () : (null | undefined | void){
               fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
                 .then((response) => response.json())
                 .then(window.location.replace("/list"));
@@ -89,6 +90,7 @@ function Write() {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 export default Write;
