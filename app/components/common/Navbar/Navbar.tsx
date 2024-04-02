@@ -19,28 +19,33 @@ function NavBar(props) {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link href="/list">
-                {props.modeColor != undefined && props.modeColor.value == "light" ? (
-                  <Button variant="outline-dark">
-                    <ListTask></ListTask>List
-                  </Button>
-                ) : (
-                  <Button variant="outline-light">
-                    <ListTask></ListTask>List
-                  </Button>
-                )}
-              </Nav.Link>
-              <Nav.Link href="/write">
-                {props.modeColor != undefined && props.modeColor.value == "light" ? (
-                  <Button variant="outline-dark">
-                    <PencilSquare></PencilSquare>Write
-                  </Button>
-                ) : (
-                  <Button variant="outline-light">
-                    <PencilSquare></PencilSquare>Write
-                  </Button>
-                )}
-              </Nav.Link>
+              {props.modeColor != undefined && props.modeColor.value == "light" ? (
+                <>
+                  <Nav.Link href="/list">
+                    <Button variant="outline-dark">
+                      <ListTask></ListTask>List
+                    </Button>
+                  </Nav.Link>
+                  <Nav.Link href="/write">
+                    <Button variant="outline-dark">
+                      <PencilSquare></PencilSquare>Write
+                    </Button>
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link href="/list">
+                    <Button variant="outline-light">
+                      <ListTask></ListTask>List
+                    </Button>
+                  </Nav.Link>
+                  <Nav.Link href="/write">
+                    <Button variant="outline-light">
+                      <PencilSquare></PencilSquare>Write
+                    </Button>
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
             {props.session ? (
               <>
@@ -49,13 +54,24 @@ function NavBar(props) {
               </>
             ) : (
               <>
-                <Link href="/register">
-                  <button>Register</button>
-                </Link>
-                <LoginBtn modeColor={props.modeColor}></LoginBtn>
+                {props.modeColor != undefined && props.modeColor.value == "light" ? (
+                  <>
+                    <Link href="/register">
+                      <Button variant="outline-dark">Register</Button>
+                    </Link>
+                    <LoginBtn modeColor={props.modeColor}></LoginBtn>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/register">
+                      <Button variant="outline-light">Register</Button>
+                    </Link>
+                    <LoginBtn modeColor={props.modeColor}></LoginBtn>
+                  </>
+                )}
               </>
             )}
-            <Theme modeColor={props.modeColor}></Theme>
+            <Theme modeColor={props.modeColor} />
           </Navbar.Collapse>
         </Container>
       </Navbar>

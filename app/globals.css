@@ -9,9 +9,9 @@ body {
   height: calc(100vh - 206px);
   overflow-y: scroll;
 }
-.quill {
-  height: 50vh;
-}
+
+/* dark-mode */
+
 .dark-mode {
   background-color: #101010;
   color: #fafafa;
@@ -22,6 +22,9 @@ body {
 .dark-mode .navbar p {
   color: #fafafa;
 }
+
+/* light-mode */
+
 .light-mode {
   background-color: #fafafa;
 }
@@ -31,15 +34,10 @@ body {
 .light-mode p {
   color: #101010;
 }
+
 .comment-form {
   resize: none;
 }
 .div-comment {
   margin-top: 150px;
-}
-.listgroup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }

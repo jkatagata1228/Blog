@@ -9,6 +9,7 @@ import Link from "next/link";
 import DeleteBtn from "../../components/edit/DeleteBtn";
 
 export default async function Detail(props) {
+  console.log(props);
   const db = (await connectDB).db("forum");
   let result = await db.collection("post").findOne({ _id: new ObjectId(props.params._id) });
 
@@ -28,7 +29,9 @@ export default async function Detail(props) {
           <Card body>{ReactHtmlParser(result.content)}</Card>
           <div style={{ display: "flex", justifyContent: "end", padding: "1em 0 0 0" }}>
             <Link href={`/edit/${props.params._id}`}>
-              <Button variant="success">Edit</Button>
+              <Button style={{ margin: "0 0.5em 0 0" }} variant="success">
+                Edit
+              </Button>
             </Link>
             <DeleteBtn props={props} />
           </div>

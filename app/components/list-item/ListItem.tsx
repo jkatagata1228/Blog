@@ -5,7 +5,7 @@ import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import ReactHtmlParser from "html-react-parser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact, faSass, faGitAlt } from "@fortawesome/free-brands-svg-icons";
-
+import style from "./Listitem.module.scss";
 // function a({ result }) {
 //   return (
 //     <div className="list-item">
@@ -73,7 +73,7 @@ import { faReact, faSass, faGitAlt } from "@fortawesome/free-brands-svg-icons";
 
 function ListItem(props) {
   return (
-    <div>
+    <div className={style.listItem}>
       {props.result.map(function (a, i) {
         return (
           <ListGroup key={i}>
@@ -83,7 +83,7 @@ function ListItem(props) {
                 {props.result[i].value === "faReact" && <FontAwesomeIcon icon={faReact} size="xl" style={{ color: "#61DAFB" }} />}
                 {props.result[i].value === "faSass" && <FontAwesomeIcon icon={faSass} size="xl" style={{ color: "#CF649A" }} />}
                 {props.result[i].value === "faGitAlt" && <FontAwesomeIcon icon={faGitAlt} size="xl" style={{ color: "#F14E32" }} />}
-                <p>{props.result[i].date}</p>
+                <p className={style.listItem__p}>{props.result[i].date}</p>
               </div>
             </ListGroup.Item>
           </ListGroup>

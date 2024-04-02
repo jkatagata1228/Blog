@@ -13,7 +13,7 @@ export default async function Home() {
         <Col md={6}>
           <div className={style.main__div}>
             <h1>Hello</h1>
-            <p>I am Jang JunYong, a front-end engineer.</p>
+            <p>I am Jang JunYong, a Frontend Developer.</p>
           </div>
         </Col>
         <Col md={6}>

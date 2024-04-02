@@ -1,8 +1,8 @@
 import { connectDB } from "../../util/database";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import Listgroup from "./Listgroup";
-import ListItem from "./ListItem";
 import style from "./page.module.scss";
+import ListItem from "../components/list-item/ListItem";
 
 //빌드할때 스태틱 렌더링 된것을 강제로 다이나믹 렌더링으로 바꿔주는코드
 //dynamic 이라는 예약된 변수
