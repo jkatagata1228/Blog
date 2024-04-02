@@ -4,11 +4,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { cookies } from "next/headers";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
 import NavBar from "./components/common/Navbar/Navbar";
 import Footer from "./components/common/Footer/Footer";
-config.autoAddCss = false; /* eslint-disable import/first */
+// fontawesome error
+// https://docs.fontawesome.com/web/use-with/react/use-with#next-js
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +20,8 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  let session = await getServerSession(authOptions);
-  let modeColor = cookies().get("mode");
+  const session = await getServerSession(authOptions);
+  const modeColor = cookies().get("mode");
 
   return (
     <html lang="en">

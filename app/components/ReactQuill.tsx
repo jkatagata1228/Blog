@@ -33,8 +33,8 @@ function WriteReactQuill(props) {
     },
   };
   return (
-    <div className="">
-      <ReactQuill modules={modules} theme="snow" value={props.content} onChange={props.setContent} />
+    <div style={{ border: "5px solid red", height: "500px", marginBottom: "10px" }}>
+      <ReactQuill style={{ height: "500px" }} modules={modules} theme="snow" value={props.content} onChange={props.setContent} />
     </div>
   );
 }

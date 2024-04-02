@@ -5,16 +5,11 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
 import WriteReactQuill from "../components/ReactQuill";
-// function a() {
-//   // if(session){
-//   //   return(<div></div>)
-//   // }else {<div>
-//   //   로그인하세요
-//   // </div>}
+import WritePageAccessControl from "./WritePageAccessControl";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-function Write() {
+function Write(props) {
   const [select, setSelect] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -53,45 +48,46 @@ function Write() {
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
   return (
     <>
-    <Container>
-      <Row>
-        <Col>
-          <Form.Select aria-label="Default select example" onChange={getSelectValue}>
-            <option>Please select</option>
-            <option value="faReact">React/Nextjs</option>
-            <option value="faSas">CSS/SCSS</option>
-            <option value="faGitAlt">Git</option>
-          </Form.Select>
-          <InputGroup className="mb-3">
-            <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
-          </InputGroup>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="quill">
-          <WriteReactQuill content={content} setContent={setContent} />
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ marginTop: "3.5em" }}>
-          <Button href="/list" variant="outline-danger">
-            Cancel
-          </Button>
-          <Button
-            onClick={function () : (null | undefined | void){
-              fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
-                .then((response) => response.json())
-                .then(() => {
-                  window.location.replace("/list");
-              });
-            }}
-            variant="outline-primary"
-          >
-            Submit
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+      {/* <WritePageAccessControl /> */}
+      <Container>
+        <Row>
+          <Col>
+            <Form.Select aria-label="Default select example" onChange={getSelectValue}>
+              <option>Please select</option>
+              <option value="faReact">React/Nextjs</option>
+              <option value="faSas">CSS/SCSS</option>
+              <option value="faGitAlt">Git</option>
+            </Form.Select>
+            <InputGroup className="mb-3">
+              <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
+            </InputGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col style={{ height: "200px", marginBottom: "10px" }}>
+            <WriteReactQuill content={content} setContent={setContent} />
+          </Col>
+        </Row>
+        <Row style={{ position: "relative" }}>
+          <Col>
+            <Button href="/list" variant="outline-danger">
+              Cancel
+            </Button>
+            <Button
+              onClick={function (): null | undefined | void {
+                fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
+                  .then((response) => response.json())
+                  .then(() => {
+                    window.location.replace("/list");
+                  });
+              }}
+              variant="outline-primary"
+            >
+              Submit
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

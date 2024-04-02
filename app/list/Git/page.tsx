@@ -1,4 +1,4 @@
-import ListItem from "../ListItem";
+import ListItem from "../../components/list-item/ListItem";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import Listgroup from "../Listgroup";
 import { connectDB } from "../../../util/database";
