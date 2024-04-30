@@ -3,17 +3,34 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import style from "./page.module.scss";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
 
-function Register() {
-  const [name, setName] = useState("");
+interface responseType {
+  error?: null | string;
+  status: number;
+}
+
+const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const getNameValue = function (e) {
-    setName(e.target.value);
+  const logInhandler = async () => {
+    await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    }).then((response: any) => {
+      if (response.status == 200) {
+        console.log(response);
+        // router.push("/list");
+        // router.refresh();
+      }
+    });
   };
+
   const getEmailValue = function (e) {
     setEmail(e.target.value);
   };
@@ -24,10 +41,6 @@ function Register() {
     <Container fluid="md" className={style.register}>
       <Row>
         <Col>
-          <InputGroup className="mb-3">
-            <InputGroup.Text>Name</InputGroup.Text>
-            <Form.Control placeholder="Please enter your name" aria-label="Username" aria-describedby="basic-addon1" onChange={getNameValue} />
-          </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text>Email</InputGroup.Text>
             <Form.Control placeholder="Please enter your e-mail" aria-label="Username" aria-describedby="basic-addon1" onChange={getEmailValue} />
@@ -55,22 +68,16 @@ function Register() {
           <Button
             variant="outline-primary"
             onClick={() => {
-              fetch("api/auth/signup", { method: "POST", body: JSON.stringify({ name: name, email: email, password: password, role: "none_admin" }) }).then(
-                (response) => {
-                  if (response.status == 200) {
-                    router.push("/list");
-                    router.refresh();
-                  }
-                }
-              );
+              logInhandler();
+              // console.log(email, password);
             }}
           >
-            Register
+            SignIn
           </Button>
         </div>
       </Row>
     </Container>
   );
-}
+};
 
-export default Register;
+export default LogIn;

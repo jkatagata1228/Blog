@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
@@ -71,26 +71,37 @@ import style from "./Listitem.module.scss";
 //   );
 // }
 
-function ListItem(props) {
+const ListItem = (props) => {
   return (
     <div className={style.listItem}>
-      {props.result.map(function (a, i) {
+      {props.result.map((a, i) => {
         return (
-          <ListGroup key={i}>
-            <ListGroup.Item action href={`/detail/${props.result[i]._id}`} style={{ marginBottom: "16px" }}>
-              <p style={{ fontWeight: "bold" }}>{props.result[i].title}</p>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                {props.result[i].value === "faReact" && <FontAwesomeIcon icon={faReact} size="xl" style={{ color: "#61DAFB" }} />}
-                {props.result[i].value === "faSass" && <FontAwesomeIcon icon={faSass} size="xl" style={{ color: "#CF649A" }} />}
-                {props.result[i].value === "faGitAlt" && <FontAwesomeIcon icon={faGitAlt} size="xl" style={{ color: "#F14E32" }} />}
-                <p className={style.listItem__p}>{props.result[i].date}</p>
+          <div className={style.listItem__div__main} key={i}>
+            <Link href={`/detail/${props.result[i]._id}`}>
+              <div className={style.listItem__div__img}>
+                {props.result[i].value === "faReact" && <img className={style.listItem__img__main} src="/images/reactjs.svg" />}
+                {props.result[i].value === "faSass" && <img className={style.listItem__img__main} src="/images/sass.svg" />}
+                {props.result[i].value === "faGitAlt" && <img className={style.listItem__img__main} src="/images/github.svg" />}
               </div>
-            </ListGroup.Item>
-          </ListGroup>
+            </Link>
+            <div className={style.listItem__div__text}>
+              <Link href={`/detail/${props.result[i]._id}`} style={{ marginBottom: "16px", textDecoration: "none" }}>
+                <p className={style.listItem__p__title}>{props.result[i].title}</p>
+              </Link>
+              <div className={style.listItem__div__user}>
+                <img className={style.listItem__img__logo} src="/images/IMG_6882.JPG" />
+                <p style={{ color: "#0000008a" }} className={style.listItem__p__user}>
+                  {props.result[i].name}
+                  <br />
+                  {props.result[i].date}
+                </p>
+              </div>
+            </div>
+          </div>
         );
       })}
     </div>
   );
-}
+};
 
 export default ListItem;

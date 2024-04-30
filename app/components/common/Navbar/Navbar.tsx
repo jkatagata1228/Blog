@@ -8,13 +8,13 @@ import { ListTask, PencilSquare } from "react-bootstrap-icons";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import style from "./Navbar.module.scss";
 
-function NavBar(props) {
+const NavBar = (props) => {
   return (
     <div className={style.navbar}>
       <Navbar expand="sm">
         <Container fluid>
           <Navbar.Brand href="/">
-            <p className={style.navbar__p__logo}>JUN</p>
+            <p className={style.navbar__p__logo}>JUN BLOG</p>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -77,6 +77,6 @@ function NavBar(props) {
       </Navbar>
     </div>
   );
-}
+};
 
 export default NavBar;
