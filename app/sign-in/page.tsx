@@ -24,9 +24,8 @@ const LogIn = () => {
       redirect: false,
     }).then((response: any) => {
       if (response.status == 200) {
-        console.log(response);
-        // router.push("/list");
-        // router.refresh();
+        router.push("/list");
+        router.refresh();
       }
     });
   };
