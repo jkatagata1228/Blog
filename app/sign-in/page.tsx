@@ -7,6 +7,11 @@ import { redirect, useRouter } from "next/navigation";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
 
+interface responseType {
+  error?: null | string;
+  status: number;
+}
+
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,10 +22,11 @@ const LogIn = () => {
       email: email,
       password: password,
       redirect: false,
-    }).then((response) => {
+    }).then((response: any) => {
       if (response.status == 200) {
-        router.push("/list");
-        router.refresh();
+        console.log(response);
+        // router.push("/list");
+        // router.refresh();
       }
     });
   };
