@@ -16,15 +16,19 @@ export default async function List() {
     return a;
   });
   return (
+    // <div style={{ display: "flex", justifyContent: "center" }}>
+    //   <Listgroup />
+    //   <ListItem result={result} />
+    // </div>
     <Container>
       <Row>
         <Col md={2} className="listgroup">
-          <Listgroup></Listgroup>
+          <Listgroup />
         </Col>
         <Col md={10}>
-          <div className="list-bg">
-            <ListItem result={result}></ListItem>
-          </div>
+          {/* <div className="list-bg"> */}
+          <ListItem result={result} />
+          {/* </div> */}
         </Col>
       </Row>
     </Container>

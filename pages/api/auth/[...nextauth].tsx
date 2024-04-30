@@ -7,16 +7,15 @@ import bcrypt from "bcrypt";
 
 type Credentials = {
   email: string;
-  password : string
+  password: string;
 };
 
 export const authOptions: NextAuthOptions = {
-  
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_CLIENTID || '', 
-      clientSecret: process.env.GITHUB_CLIENTSECRET || '', 
-    }),
+    // GithubProvider({
+    //   clientId: process.env.GITHUB_CLIENTID || '',
+    //   clientSecret: process.env.GITHUB_CLIENTSECRET || '',
+    // }),
 
     CredentialsProvider({
       //1. 로그인페이지 폼 자동생성해주는 코드
@@ -29,16 +28,17 @@ export const authOptions: NextAuthOptions = {
       //2. 로그인요청시 실행되는코드
       //직접 DB에서 아이디,비번 비교하고
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
-      async authorize(credentials : Credentials) {
+      async authorize(credentials: Credentials) {
         let db = (await connectDB).db("forum");
         let user = await db.collection("user_cred").findOne({ email: credentials.email });
         if (!user) {
-          console.log("해당 이메일은 없음");
+          console.log("email");
+          console.log(credentials.email);
           return null;
         }
         const pwcheck = await bcrypt.compare(credentials.password, user.password);
         if (!pwcheck) {
-          console.log("비번틀림");
+          console.log("password");
           return null;
         }
         return user;
@@ -55,21 +55,25 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     //4. jwt 만들 때 실행되는 코드
     //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
-    jwt: async ({ token, user }: { token: any, user: any }) => {
+    jwt: async ({ token, user }: { token: any; user: any }) => {
       if (user) {
-        token.user = {}
+        token.user = {};
         token.user.name = user.name;
         token.user.email = user.email;
       }
       return token;
     },
     //5. 유저 세션이 조회될 때 마다 실행되는 코드
-    session: async ({ session, token }: { session: any, token: any }) => {
+    session: async ({ session, token }: { session: any; token: any }) => {
       session.user = token.user;
       return session;
     },
   },
-
+  // 커스텀 로그인 페이지를 위해 추가된 부분
+  pages: {
+    signIn: "/sign-in",
+  },
+  // -----------------------------------
   secret: process.env.NEXTAUTH_SECRET, //'jwt생성시쓰는암호'
   adapter: MongoDBAdapter(connectDB), //OAuth + session 쓸때 코드
 };

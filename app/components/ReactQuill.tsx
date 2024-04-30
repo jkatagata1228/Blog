@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-function WriteReactQuill(props) {
+const WriteReactQuill = (props) => {
   const modules = {
     toolbar: {
       container: [
@@ -33,9 +33,9 @@ function WriteReactQuill(props) {
     },
   };
   return (
-    <div style={{ border: "5px solid red", height: "500px", marginBottom: "10px" }}>
+    <div style={{ height: "500px" }}>
       <ReactQuill style={{ height: "500px" }} modules={modules} theme="snow" value={props.content} onChange={props.setContent} />
     </div>
   );
-}
+};
 export default WriteReactQuill;

@@ -2,10 +2,11 @@
 import { Spinner } from "react-bootstrap";
 import style from "./loading.module.scss";
 
-export default function Loading() {
+const Loading = () => {
   return (
     <div className={style.loading}>
-      <Spinner className={style.loading__img} animation="border" variant="primary" />
+      <Spinner animation="border" variant="info" />
     </div>
   );
-}
+};
+export default Loading;

@@ -1,0 +1,11 @@
+.register {
+  width: 100%;
+  height: calc(100vh - 86px - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__div__btn {
+    display: flex;
+    justify-content: end;
+  }
+}
