@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
 import WriteReactQuill from "../components/ReactQuill";
-import WritePageAccessControl from "./WritePageAccessControl";
 import { useRouter } from "next/navigation";
+import CustomButton from "../components/common/button/CustomButton";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -16,10 +16,10 @@ const writePage = () => {
   const [content, setContent] = useState("");
   const router = useRouter();
 
-  const getTitleValue = function (e) {
+  const getTitleValue = (e) => {
     setTitle(e.target.value);
   };
-  const getSelectValue = function (e) {
+  const getSelectValue = (e) => {
     setSelect(e.target.value);
   };
 
@@ -33,11 +33,11 @@ const writePage = () => {
     }
     fetch("/api/post/new", { method: "POST", body: JSON.stringify({ title: title, content: content, value: select, date: date }) })
       .then((response) => response.json())
-      .then(() => {
-        alert("投稿に成功しました。");
-        // window.alert("投稿に成功しました。");
-        router.push("/list");
-        // window.location.replace("/list");
+      .then((response) => {
+        if (response.status === 200) {
+          alert("投稿に成功しました。");
+          router.push("/list");
+        }
       });
   };
   // }
@@ -68,42 +68,30 @@ const writePage = () => {
   const today = new Date();
   const date = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
   return (
-    <>
-      {/* <WritePageAccessControl /> */}
-      <Container>
-        <Row>
-          <Col>
-            <Form.Select aria-label="Default select example" onChange={getSelectValue}>
-              <option>Please select</option>
-              <option value="faReact">React/Nextjs</option>
-              <option value="faSass">CSS/SCSS</option>
-              <option value="faGitAlt">Git</option>
-            </Form.Select>
-            <InputGroup className="mb-3">
-              <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
-            </InputGroup>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <WriteReactQuill content={content} setContent={setContent} />
-          </Col>
-        </Row>
-        <div style={{ display: "flex", margin: " 80px 0 0 0", justifyContent: "end" }}>
-          <Button href="/list" variant="outline-danger">
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              writeHandler();
-            }}
-            variant="outline-primary"
-          >
-            Submit
-          </Button>
-        </div>
-      </Container>
-    </>
+    <Container>
+      <Row>
+        <Col>
+          <Form.Select aria-label="Default select example" onChange={getSelectValue}>
+            <option>Please select</option>
+            <option value="faReact">React/Nextjs</option>
+            <option value="faSass">CSS/SCSS</option>
+            <option value="faGitAlt">Git</option>
+          </Form.Select>
+          <InputGroup className="mb-3">
+            <Form.Control name="title" placeholder="Title" onChange={getTitleValue} />
+          </InputGroup>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <WriteReactQuill content={content} setContent={setContent} />
+        </Col>
+      </Row>
+      <div style={{ display: "flex", margin: " 80px 0 0 0", justifyContent: "end" }}>
+        <CustomButton text={"cancel"} />
+        <CustomButton text={"write"} writeHandler={writeHandler} />
+      </div>
+    </Container>
   );
 };
 export default writePage;

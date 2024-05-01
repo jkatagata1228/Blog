@@ -1,0 +1,22 @@
+.layout {
+  background-color: #fafafa;
+  &__div__children {
+    width: 100%;
+    height: calc(100vh - 126px - 80px);
+    padding: 0 50px 0 50px;
+    overflow-y: scroll;
+  }
+}
+.light-mode .navbar {
+  background-color: #fafafa;
+}
+.light-mode p {
+  color: #101010;
+}
+
+.comment-form {
+  resize: none;
+}
+.div-comment {
+  margin-top: 150px;
+}

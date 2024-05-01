@@ -1,3 +1,5 @@
+// Light_Mode & Dark_mode機能（未定）
+
 "use client";
 
 import { useRouter } from "next/navigation";

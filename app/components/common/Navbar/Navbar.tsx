@@ -1,14 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import LoginBtn from "../LoginBtn";
-import LogoutBtn from "../LogoutBtn";
-import Theme from "../ThemeBtn";
 import { ListTask, PencilSquare } from "react-bootstrap-icons";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import style from "./Navbar.module.scss";
+import CustomButton from "../button/CustomButton";
 
-const NavBar = (props) => {
+const NavBar = ({ session }) => {
   return (
     <div className={style.navbar}>
       <Navbar expand="sm">
@@ -19,59 +17,40 @@ const NavBar = (props) => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              {props.modeColor != undefined && props.modeColor.value == "light" ? (
-                <>
-                  <Nav.Link href="/list">
-                    <Button variant="outline-dark">
-                      <ListTask></ListTask>List
-                    </Button>
-                  </Nav.Link>
-                  <Nav.Link href="/write">
-                    <Button variant="outline-dark">
-                      <PencilSquare></PencilSquare>Write
-                    </Button>
-                  </Nav.Link>
-                </>
-              ) : (
-                <>
-                  <Nav.Link href="/list">
-                    <Button variant="outline-light">
-                      <ListTask></ListTask>List
-                    </Button>
-                  </Nav.Link>
-                  <Nav.Link href="/write">
-                    <Button variant="outline-light">
-                      <PencilSquare></PencilSquare>Write
-                    </Button>
-                  </Nav.Link>
-                </>
-              )}
-            </Nav>
-            {props.session ? (
               <>
-                <p className={style.navbar__p__email}>{props.session.user.name}</p>
-                <LogoutBtn modeColor={props.modeColor}></LogoutBtn>
+                <Nav.Link href="/list">
+                  <Button variant="outline-dark">
+                    <ListTask />
+                    List
+                  </Button>
+                </Nav.Link>
+                {session ? (
+                  <>
+                    <Nav.Link href="/write">
+                      <Button variant="outline-dark">
+                        <PencilSquare /> Write
+                      </Button>
+                    </Nav.Link>
+                  </>
+                ) : null}
+              </>
+            </Nav>
+            {session ? (
+              <>
+                <img className={style.navbar__img__logo} src="/images/IMG_6882.JPG" />
+                <p className={style.navbar__p__user}>{session.user.name}</p>
+                <CustomButton text={"logOut"} />
               </>
             ) : (
               <>
-                {props.modeColor != undefined && props.modeColor.value == "light" ? (
-                  <>
-                    <Link href="/register">
-                      <Button variant="outline-dark">Register</Button>
-                    </Link>
-                    <LoginBtn modeColor={props.modeColor}></LoginBtn>
-                  </>
-                ) : (
-                  <>
-                    <Link href="/register">
-                      <Button variant="outline-light">Register</Button>
-                    </Link>
-                    <LoginBtn modeColor={props.modeColor}></LoginBtn>
-                  </>
-                )}
+                <Link href="/register">
+                  <CustomButton text={"register"} />
+                </Link>
+                <CustomButton text={"logIn"} />
               </>
             )}
-            <Theme modeColor={props.modeColor} />
+            {/* Light_Mode & Dark_mode機能（未定）
+            <Theme modeColor={session.modeColor} /> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

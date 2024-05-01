@@ -1,25 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import style from "./page.module.scss";
 import { useRouter } from "next/navigation";
+import CustomButton from "../components/common/button/CustomButton";
 
-function Register() {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const getNameValue = function (e) {
+  useEffect(() => {
+    alert("現在会員登録を制限しております。");
+  }, []);
+
+  //会員登録機能
+
+  // fetch("api/auth/signup", { method: "POST", body: JSON.stringify({ name: name, email: email, password: password, role: "none_admin" }) }).then(
+  //   (response) => {
+  //     if (response.status == 200) {
+  //       router.push("/list");
+  //       router.refresh();
+  //     }
+  //   }
+  // );
+
+  const getNameValue = (e) => {
     setName(e.target.value);
   };
-  const getEmailValue = function (e) {
+  const getEmailValue = (e) => {
     setEmail(e.target.value);
   };
-  const getPasswordlValue = function (e) {
+  const getPasswordlValue = (e) => {
     setPassword(e.target.value);
   };
+
   return (
     <Container fluid="md" className={style.register}>
       <Row>
@@ -44,33 +61,12 @@ function Register() {
           </InputGroup>
         </Col>
         <div className={style.register__div__btn}>
-          <Button
-            variant="outline-danger"
-            onClick={() => {
-              router.push("/list");
-            }}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              fetch("api/auth/signup", { method: "POST", body: JSON.stringify({ name: name, email: email, password: password, role: "none_admin" }) }).then(
-                (response) => {
-                  if (response.status == 200) {
-                    router.push("/list");
-                    router.refresh();
-                  }
-                }
-              );
-            }}
-          >
-            Register
-          </Button>
+          <CustomButton text={"cancel"} />
+          <CustomButton text={"signUp"} />
         </div>
       </Row>
     </Container>
   );
-}
+};
 
 export default Register;

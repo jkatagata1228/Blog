@@ -1,4 +1,5 @@
 .navbar {
+  // background-color: #101010;
   // background: #fafafa;
   // background-color: #ffffff;
   padding: 20px;
@@ -9,10 +10,13 @@
     font-size: 40px;
     font-weight: bold;
   }
-  &__p__email {
-    margin: 0 6px 0 0;
+  &__img__logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
   }
-  & button {
-    // padding: 0;
+  &__p__user {
+    color: #101010;
+    margin: 0 6px 0 6px;
   }
 }
