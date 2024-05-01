@@ -7,16 +7,15 @@ import ReactHtmlParser from "html-react-parser";
 import Listgroup from "../../list/Listgroup";
 import Link from "next/link";
 import DeleteBtn from "../../components/edit/DeleteBtn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import style from "./page.module.scss";
+import CustomButton from "../../components/common/button/CustomButton";
 
-export default async function Detail(props) {
-  console.log(props);
+const Detail = async (props) => {
+  const session = await getServerSession(authOptions);
   const db = (await connectDB).db("forum");
-  let result = await db.collection("post").findOne({ _id: new ObjectId(props.params._id) });
-
-  //404
-  if (result === null) {
-    return notFound();
-  }
+  const data = await db.collection("post").findOne({ _id: new ObjectId(props.params._id) });
 
   return (
     <Container>
@@ -25,19 +24,19 @@ export default async function Detail(props) {
           <Listgroup></Listgroup>
         </Col>
         <Col md={10}>
-          <Card body>{result.title}</Card>
-          <Card body>{ReactHtmlParser(result.content)}</Card>
-          <div style={{ display: "flex", justifyContent: "end", padding: "1em 0 0 0" }}>
-            <Link href={`/edit/${props.params._id}`}>
-              <Button style={{ margin: "0 0.5em 0 0" }} variant="success">
-                Edit
-              </Button>
-            </Link>
-            <DeleteBtn props={props} />
-          </div>
+          <Card body>{data.title}</Card>
+          <Card body>{ReactHtmlParser(data.content)}</Card>
+          {session ? (
+            <div className={style.detail__div__button}>
+              <CustomButton text={"edit"} props={props} />
+              <CustomButton text={"delete"} props={props} />
+            </div>
+          ) : null}
           <Comment _id={props.params._id}></Comment>
         </Col>
       </Row>
     </Container>
   );
-}
+};
+
+export default Detail;

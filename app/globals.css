@@ -1,43 +1,8 @@
 body {
   -ms-overflow-style: none; /* IE and Edge */
+  margin: 0;
+  padding: 0;
 }
 ::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
-}
-.children {
-  width: 100%;
-  height: calc(100vh - 206px);
-  overflow-y: scroll;
-}
-
-/* dark-mode */
-
-.dark-mode {
-  background-color: #101010;
-  color: #fafafa;
-}
-.dark-mode .navbar {
-  background-color: #101010;
-}
-.dark-mode .navbar p {
-  color: #fafafa;
-}
-
-/* light-mode */
-
-.light-mode {
-  background-color: #fafafa;
-}
-.light-mode .navbar {
-  background-color: #fafafa;
-}
-.light-mode p {
-  color: #101010;
-}
-
-.comment-form {
-  resize: none;
-}
-.div-comment {
-  margin-top: 150px;
 }

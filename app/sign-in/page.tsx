@@ -6,6 +6,7 @@ import style from "./page.module.scss";
 import { redirect, useRouter } from "next/navigation";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn } from "next-auth/react";
+import CustomButton from "../components/common/button/CustomButton";
 
 interface responseType {
   error?: null | string;
@@ -30,10 +31,10 @@ const LogIn = () => {
     });
   };
 
-  const getEmailValue = function (e) {
+  const getEmailValue = (e) => {
     setEmail(e.target.value);
   };
-  const getPasswordlValue = function (e) {
+  const getPasswordlValue = (e) => {
     setPassword(e.target.value);
   };
   return (
@@ -56,23 +57,8 @@ const LogIn = () => {
           </InputGroup>
         </Col>
         <div className={style.register__div__btn}>
-          <Button
-            variant="outline-danger"
-            onClick={() => {
-              router.push("/list");
-            }}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              logInhandler();
-              // console.log(email, password);
-            }}
-          >
-            SignIn
-          </Button>
+          <CustomButton text={"cancel"} />
+          <CustomButton text={"signIn"} logInhandler={logInhandler} />
         </div>
       </Row>
     </Container>

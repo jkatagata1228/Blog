@@ -17,9 +17,9 @@ export default async function handler(req, res) {
         // res.status(200).json({ redirect: "/list" });
         // return NextResponse.redirect("/list", 302);
         // res.redirect(302, "/list");
-        res.status(200).json("ok");
+        return res.status(200).json({ status: 200 });
       } catch (error) {
-        return res.status(500).json("sorry");
+        return res.status(500).json({ status: 500 });
       }
     }
   }
