@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get("next-auth.session-token");
+  const developToken = req.cookies.get("next-auth.session-token");
+  const releaseToken = req.cookies.get("__Secure-next-auth.session-token");
 
-  if (!token) {
+  if (!developToken || !releaseToken) {
     return NextResponse.redirect(new URL("/list", req.url));
   }
 }
