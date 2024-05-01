@@ -5,7 +5,14 @@ import { Button } from "react-bootstrap";
 import style from "./CustomButton.module.scss";
 import { useRouter } from "next/navigation";
 
-const CustomButton = ({ text, logInhandler, writeHandler, props }) => {
+interface PropsType {
+  text?: string;
+  logInhandler?: any;
+  writeHandler?: any;
+  props?: any;
+}
+
+const CustomButton = ({ text, logInhandler, writeHandler, props }: PropsType) => {
   const router = useRouter();
 
   if (text === "register") {
